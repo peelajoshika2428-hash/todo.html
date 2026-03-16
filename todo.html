@@ -4,7 +4,6 @@
 <title>To Do List</title>
 
 <style>
-
 body{
 font-family:Arial;
 background:#e3f2fd;
@@ -19,11 +18,6 @@ background:white;
 padding:20px;
 border-radius:10px;
 width:350px;
-box-shadow:0 0 10px rgba(0,0,0,0.2);
-}
-
-h2{
-text-align:center;
 }
 
 ul{
@@ -32,24 +26,21 @@ padding:0;
 }
 
 li{
-padding:10px;
-margin:8px 0;
 background:#f1f1f1;
-border-radius:5px;
+margin:5px 0;
+padding:10px;
 display:flex;
-align-items:center;
+justify-content:space-between;
 }
 
-input[type="checkbox"]{
-margin-right:10px;
+button{
+background:red;
+color:white;
+border:none;
+padding:5px;
 }
-
-input[type="checkbox"]:checked + span{
-text-decoration:line-through;
-color:gray;
-}
-
 </style>
+
 </head>
 
 <body>
@@ -58,31 +49,42 @@ color:gray;
 
 <h2>My To Do List</h2>
 
-<ul>
+<input type="text" id="taskInput" placeholder="Enter task">
 
-<li>
-<input type="checkbox">
-<span>Complete HTML assignment</span>
-</li>
+<button onclick="addTask()">Add</button>
 
-<li>
-<input type="checkbox">
-<span>Practice CSS</span>
-</li>
-
-<li>
-<input type="checkbox">
-<span>Upload project to GitHub</span>
-</li>
-
-<li>
-<input type="checkbox">
-<span>Prepare for coding interview</span>
-</li>
-
-</ul>
+<ul id="taskList"></ul>
 
 </div>
+
+<!-- JAVASCRIPT STARTS HERE -->
+
+<script>
+
+function addTask(){
+
+let input=document.getElementById("taskInput");
+
+let task=input.value;
+
+if(task==="") return;
+
+let li=document.createElement("li");
+
+li.innerHTML=task+" <button onclick='deleteTask(this)'>X</button>";
+
+document.getElementById("taskList").appendChild(li);
+
+input.value="";
+}
+
+function deleteTask(btn){
+btn.parentElement.remove();
+}
+
+</script>
+
+<!-- JAVASCRIPT ENDS HERE -->
 
 </body>
 </html>
